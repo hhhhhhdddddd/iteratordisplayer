@@ -14,7 +14,8 @@ iteratorDisplayer = (function () {
 
             var generators = [
                 {name: "integers", gen: iteratorDisplayer.integerGenerator.create()},
-                {name: "primes", gen: iteratorDisplayer.primeGenerator.create()}
+                {name: "primes", gen: iteratorDisplayer.primeGenerator.create()},
+                {name: "hanoi", gen: iteratorDisplayer.hanoiSolutionGenerator.create()}
             ];
 
             var generatorSelectorPanel = iteratorDisplayer.generatorSelectorPanel.create(generators);
