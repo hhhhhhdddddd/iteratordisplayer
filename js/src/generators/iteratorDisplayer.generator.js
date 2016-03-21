@@ -1,7 +1,5 @@
 /*
 Regroupe toutes les fonctionnalités commune aux générateurs.
-
-Chaque écouteur implante onNextValue.
 */
 iteratorDisplayer.generator = (function() {
 
