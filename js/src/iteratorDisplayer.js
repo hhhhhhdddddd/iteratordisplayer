@@ -1,10 +1,10 @@
 iteratorDisplayer = (function () {
 
-    var _outputPrimesSetInterval = null;
+    var _setIntervalId = null;
     var _generator = null;
 
     function stopExecution() {
-        window.clearInterval(_outputPrimesSetInterval);
+        window.clearInterval(_setIntervalId);
     }
 
     return {
@@ -24,7 +24,7 @@ iteratorDisplayer = (function () {
                 generatorSelectorPanel,
                 iteratorDisplayer.outputPanel.create(),
                 iteratorDisplayer.buttonsPanel.create(function startHandler() {
-                    _outputPrimesSetInterval = setInterval(outputInfiniteSequence, 100);
+                    _setIntervalId = setInterval(outputInfiniteSequence, 100);
                 }, function stopHandler() {
                     stopExecution();
                 })
