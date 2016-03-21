@@ -1,7 +1,6 @@
 iteratorDisplayer = (function () {
 
     var _setIntervalId = null;
-    var _generator = null;
 
     function stopExecution() {
         window.clearInterval(_setIntervalId);
