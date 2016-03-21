@@ -9,7 +9,8 @@ iteratorDisplayer.hanoiSolutionGenerator = (function() {
     return {
         create : function() {
             var hsGen = Object.create(null);
-
+            iteratorDisplayer.generator.init(hsGen);
+            
             hsGen.n = 4;
             hsGen.t = 1;
 

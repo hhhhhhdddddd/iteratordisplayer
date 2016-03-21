@@ -10,7 +10,7 @@ iteratorDisplayer.generatorSelectorPanel = (function() {
 
     return {
 
-        create : function(generatorsData) {
+        create : function(generators) {
 
             var genSelectorField = HD_.PanelField.create({
                 name: "generator-selector",
@@ -20,8 +20,16 @@ iteratorDisplayer.generatorSelectorPanel = (function() {
                 },
                 labelsBuilder: function() {
                     return _buildNamesArray(generators);
-                }
+                },
+                eventListeners : [{
+                    name : "change",
+                    handler: function(evt) {
+                        genSelectorField._listener.onNewGeneratorSelection(evt.target.value);
+                    }
+                }]
             });
+
+            genSelectorField._listener = generators;
 
             genSelectorField.getSelectedName = function() {
                 return this.findDomValue();

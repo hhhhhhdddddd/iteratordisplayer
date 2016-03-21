@@ -11,9 +11,29 @@ iteratorDisplayer.generatorList = (function() {
         create : function() {
 
             var genList = HD_.ArrayCollection.create();
+
             _generators.forEach(function(generator) {
                 genList.addElement(generator);
             });
+
+            genList._activeGenerator = null;
+
+            genList.startActiveGenerator = function() {
+                this._activeGenerator = this._activeGenerator || _generators[0].gen;
+                this._activeGenerator.startGenerating();
+            };
+
+            genList.stopActiveGenerator = function() {
+                this._activeGenerator.stopGenerating();
+            };
+
+            genList.onNewGeneratorSelection = function(generatorId) {
+                _generators.forEach(function(generator) {
+                    if (generatorId === generator.name) {
+                        genList._activeGenerator = generator.gen;
+                    }
+                });
+            };
 
             return genList;
         }
