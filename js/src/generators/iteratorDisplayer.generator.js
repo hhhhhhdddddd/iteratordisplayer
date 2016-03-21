@@ -32,7 +32,7 @@ iteratorDisplayer.generator = (function() {
 
                 function generateNextValue() {
                     if (that.hasNext()) {
-                        that._listener.onNextValue(that.next());
+                        that._listener.onTargetChange(that.next());
                     } else {
                         _stopExecution(that);
                     }

@@ -10,8 +10,7 @@ iteratorDisplayer.outputPanel = (function() {
                 type: "textDisplay"
             });
 
-            // onNextValue.
-            outputField.onNextValue = function(value) {
+            outputField.onTargetChange = function(value) {
                 this.addLine("" + value);
             };
 

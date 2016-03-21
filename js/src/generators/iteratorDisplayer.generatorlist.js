@@ -27,7 +27,7 @@ iteratorDisplayer.generatorList = (function() {
                 this._activeGenerator.stopGenerating();
             };
 
-            genList.onNewGeneratorSelection = function(generatorId) {
+            genList.onTargetChange = function(generatorId) {
                 _generators.forEach(function(generator) {
                     if (generatorId === generator.getName()) {
                         genList._activeGenerator = generator;

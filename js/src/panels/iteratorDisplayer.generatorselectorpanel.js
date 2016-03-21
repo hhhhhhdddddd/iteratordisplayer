@@ -1,6 +1,3 @@
-/*
-Chaque écouteur doit implanter onNewGeneratorSelection
-*/
 iteratorDisplayer.generatorSelectorPanel = (function() {
 
     return {
@@ -19,7 +16,8 @@ iteratorDisplayer.generatorSelectorPanel = (function() {
                 eventListeners : [{
                     name : "change",
                     handler: function(evt) {
-                        genSelectorField._listener.onNewGeneratorSelection(evt.target.value);
+                        // Un nouveau générateur nommé evt.target.value a été sélectionné
+                        genSelectorField._listener.onTargetChange(evt.target.value);
                     }
                 }]
             });

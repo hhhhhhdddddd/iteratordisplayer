@@ -4,6 +4,13 @@ iteratorDisplayer = (function () {
 
         registerListener : function(object, listener) {
             object._listener = listener;
+
+            if (! listener.onTargetChange) {
+                listener.onTargetChange = function() {
+                    throw new Error("A coder");
+                };
+            }
+            
         },
 
         main : function() {
