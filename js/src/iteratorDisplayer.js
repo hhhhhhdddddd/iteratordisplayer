@@ -11,11 +11,7 @@ iteratorDisplayer = (function () {
         main : function() {
             HD_.LocalWarnings.persistentLocalWarnings();
 
-            var generators = [
-                {name: "integers", gen: iteratorDisplayer.integerGenerator.create()},
-                {name: "primes", gen: iteratorDisplayer.primeGenerator.create()},
-                {name: "hanoi", gen: iteratorDisplayer.hanoiSolutionGenerator.create()}
-            ];
+            var generators = iteratorDisplayer.generatorList.create();
 
             var generatorSelectorPanel = iteratorDisplayer.generatorSelectorPanel.create(generators);
 
@@ -27,7 +23,7 @@ iteratorDisplayer = (function () {
                     function outputGeneratorElements(outputPanel, generators, selectedGenerator) {
                         // On choisi le générateur
                         var generator = null;
-                        generators.forEach(function(generatorData) {
+                        generators.eachElement(function(generatorData) {
                             if (generatorData.name === selectedGenerator) {
                                 generator = generatorData.gen;
                             }

@@ -1,9 +1,9 @@
 iteratorDisplayer.generatorSelectorPanel = (function() {
 
-    function _buildNamesArray(data) {
+    function _buildNamesArray(generators) {
         var res = [];
-        data.forEach(function(element, index, array) {
-            res.push(element.name);
+        generators.eachElement(function(generatorData) {
+            res.push(generatorData.name);
         });
         return res;
     }
@@ -16,10 +16,10 @@ iteratorDisplayer.generatorSelectorPanel = (function() {
                 name: "generator-selector",
                 type: "list",
                 labelValuesBuilder: function() {
-                    return _buildNamesArray(generatorsData);
+                    return _buildNamesArray(generators);
                 },
                 labelsBuilder: function() {
-                    return _buildNamesArray(generatorsData);
+                    return _buildNamesArray(generators);
                 }
             });
 
