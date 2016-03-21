@@ -22,32 +22,35 @@ iteratorDisplayer = (function () {
             var subPanels = [
                 generatorSelectorPanel,
                 iteratorDisplayer.outputPanel.create(),
-                iteratorDisplayer.buttonsPanel.create(function startHandler() {
-                    _setIntervalId = setInterval(outputInfiniteSequence, 100);
-                }, function stopHandler() {
+                iteratorDisplayer.buttonsPanel.create(function startButtonHandler() {
+
+                    function outputGeneratorElements(outputPanel, generators, selectedGenerator) {
+                        // On choisi le générateur
+                        var generator = null;
+                        generators.forEach(function(generatorData) {
+                            if (generatorData.name === selectedGenerator) {
+                                generator = generatorData.gen;
+                            }
+                        });
+
+                        // On affiche les éléments tant qu'il y en a
+                        if (generator && generator.hasNext()) {
+                            outputPanel.addLine("" + generator.next());
+                            window.scrollTo(0,document.body.scrollHeight);
+                        } else {
+                            stopExecution();
+                        }
+                    }
+
+                    var selectedGenerator = mainPanel.findPanelByName("generator-selector").getSelectedName();
+                    var outputPanel = mainPanel.findPanelByName("outputField");
+                    _setIntervalId = setInterval(function() {
+                        outputGeneratorElements(outputPanel, generators, selectedGenerator);
+                    }, 100);
+                }, function stopButtonHandler() {
                     stopExecution();
                 })
             ];
-
-            function outputInfiniteSequence() {
-                var selectedName = mainPanel.findPanelByName("generator-selector").getSelectedName();
-                
-
-                var generator = null;
-                generators.forEach(function(generatorData) {
-                    if (generatorData.name === selectedName) {
-                        generator = generatorData.gen;
-                    }
-                });
-
-                if (generator && generator.hasNext()) {
-                    mainPanel.findPanelByName("outputField").addLine("" + generator.next());
-                    window.scrollTo(0,document.body.scrollHeight);
-                } else {
-                    stopExecution();
-                    alert("Stopped");
-                }
-            }
 
             var mainPanel = iteratorDisplayer.mainPanel.create();
             for (var i = 0; i < subPanels.length; i++) {
