@@ -2,7 +2,7 @@ iteratorDisplayer.outputPanel = (function() {
 
     return {
 
-        create : function(generators) {
+        create : function() {
 
             // Création du champ (d'une zone) d'affichage
             var outputField = HD_.PanelField.create({
@@ -10,15 +10,10 @@ iteratorDisplayer.outputPanel = (function() {
                 type: "textDisplay"
             });
 
-            // Afficher chaque nouvelle valeur.
+            // onNextValue.
             outputField.onNextValue = function(value) {
                 this.addLine("" + value);
             };
-
-            // Le panneau d'affichage s'inscrit auprès de tous les générateur.
-            generators.eachElement(function(generator) {
-                generator.gen.registerListener(outputField);
-            });
 
             return outputField;
         }

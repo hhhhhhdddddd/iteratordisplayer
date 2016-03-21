@@ -3,7 +3,7 @@ iteratorDisplayer.integerGenerator = (function() {
     return {
         create : function() {
             var iGen = Object.create(null);
-            iteratorDisplayer.generator.init(iGen);
+            iteratorDisplayer.generator.init(iGen, "integers");
 
             iGen.i = 0;
 

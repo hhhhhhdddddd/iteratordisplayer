@@ -2,9 +2,9 @@
 iteratorDisplayer.generatorList = (function() {
 
     var _generators = [
-        {name: "integers", gen: iteratorDisplayer.integerGenerator.create()},
-        {name: "primes", gen: iteratorDisplayer.primeGenerator.create()},
-        {name: "hanoi", gen: iteratorDisplayer.hanoiSolutionGenerator.create()}
+        iteratorDisplayer.integerGenerator.create(),
+        iteratorDisplayer.primeGenerator.create(),
+        iteratorDisplayer.hanoiSolutionGenerator.create()
     ];
 
     return {
@@ -19,7 +19,7 @@ iteratorDisplayer.generatorList = (function() {
             genList._activeGenerator = null;
 
             genList.startActiveGenerator = function() {
-                this._activeGenerator = this._activeGenerator || _generators[0].gen;
+                this._activeGenerator = this._activeGenerator || _generators[0];
                 this._activeGenerator.startGenerating();
             };
 
@@ -29,10 +29,18 @@ iteratorDisplayer.generatorList = (function() {
 
             genList.onNewGeneratorSelection = function(generatorId) {
                 _generators.forEach(function(generator) {
-                    if (generatorId === generator.name) {
-                        genList._activeGenerator = generator.gen;
+                    if (generatorId === generator.getName()) {
+                        genList._activeGenerator = generator;
                     }
                 });
+            };
+
+            genList.generatorsNamesToArray = function() {
+                var res = [];
+                this.eachElement(function(generator) {
+                    res.push(generator.getName());
+                });
+                return res;
             };
 
             return genList;

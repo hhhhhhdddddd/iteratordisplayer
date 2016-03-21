@@ -5,7 +5,7 @@ iteratorDisplayer.primeGenerator = (function() {
         // De "Program Development in Java", Barbara Liskov
         create : function() {
             var pGen = Object.create(null);
-            iteratorDisplayer.generator.init(pGen);
+            iteratorDisplayer.generator.init(pGen, "primes");
 
             pGen.ps = []; // Nombre premier retournés jusque là
             pGen.p = 2; // Candidat suivant à tester

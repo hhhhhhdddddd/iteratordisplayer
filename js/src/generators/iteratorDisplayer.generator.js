@@ -1,3 +1,8 @@
+/*
+Regroupe toutes les fonctionnalités commune aux générateurs.
+
+Chaque écouteur implante onNextValue.
+*/
 iteratorDisplayer.generator = (function() {
 
     var _generationSpeed = 100;
@@ -8,12 +13,16 @@ iteratorDisplayer.generator = (function() {
     }
 
     return {
-        init : function(gen) {
-            gen._listeners = [];
+        init : function(gen, name) {
+            gen._name = name;
             
             // L'id de la fonction setInterval qui a lancé le débit.
             // Cette id est nécessaire pour arrêter la fonction. 
             gen._setIntervalId = null;
+
+            gen.getName = function() {
+                return this._name;
+            };
 
             // Le générateur commence à débiter des valeurs à partir d'où il s'était arrêté
             // ou à partir de sa valeur initiale si c'est la première fois qu'on le lance.
@@ -37,10 +46,6 @@ iteratorDisplayer.generator = (function() {
             // Arrête le débit de valeur par le générateur.
             gen.stopGenerating = function() {
                 _stopExecution(this);
-            };
-
-            gen.registerListener = function(listener) {
-                this._listener = listener;
             };
 
             // Doit être implanté dans les "sous types"
