@@ -35,7 +35,14 @@ iteratorDisplayer.buttonsPanel = (function() {
             });
 
             // Création du panneau destiné à contenir les boutons (placés horizontalement).
-            var buttonsPanel = HD_.HorizontalPanel.create({name: "buttonsPanel"});
+            var buttonsPanel = HD_.HorizontalPanel.create({
+                name: "buttonsPanel",
+                style:{
+                    "position": "fixed",
+                    "top": 0,
+                    "right": 0
+                }
+            });
             buttonsPanel.pushPanelElement(startButton);
             buttonsPanel.pushPanelElement(stopButton);
 

@@ -12,6 +12,7 @@ iteratorDisplayer.outputPanel = (function() {
 
             outputField.onTargetChange = function(value) {
                 this.addLine("" + value);
+                window.scrollTo(0,document.body.scrollHeight);
             };
 
             return outputField;
